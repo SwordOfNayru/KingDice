@@ -12,18 +12,6 @@ namespace KingDice
             ##########################
             #  Piste d'amelioration  #
             ##########################   
-            Une description des joueurs dans une table. Cela permettera de rajouter des joueurs supplement de façon modulaire contrairement aux fonctions de jeu actuelle fixé pour deux joueurs
-            Notament un table bool[] bot de longueur du nombre de joueur souhaité pour savoir si ce dernier est un bot ou non ET non simplement limité le bot au Joueur B
-            Celà apportera une économie de Ligne et apportera une plus grand modularité.
-
-            Créer un objet de type joueur ayant les propriétés
-            int Point
-            int Dernier Dé
-            string nom
-            bool Bot
-            int[] stat
-            Pour avoir une seul table qui stock tout les joueurs de "type" joueur. Et tout regrouper
-            De cette manierre chaque fonction ne necessiterais que l'index de table du joueur a qui c'est le tour.
         */
 
         //Variable Global
@@ -66,7 +54,7 @@ namespace KingDice
                     case 4: OptNom(); break;
                     case 5: OptBot(); break; //OptBot
                     case 8: test(); break;
-                    
+
                 }
 
 
@@ -106,13 +94,13 @@ namespace KingDice
                     System.Threading.Thread.Sleep(600);
                 else
                     if (ContinueOuQuitter() == ConsoleKey.Escape) goto end;
-                
+
             } while (!(joueurs.TesteLimite(50)));
             Victoire(joueurs.QuiAGagner(50));
         end:;
         }
 
-        
+
         /*Jeu ou le JA et JB chacun leur tour vont effectué une suite de lancé. Le joueur peut arréter a tout moment et gagnera ses pts
         Cependant si un 1 est sorti alors le joueur perd tout les points de la suite.
         Le premier arrivé a 100 gagne*/
