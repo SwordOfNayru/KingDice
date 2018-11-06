@@ -232,6 +232,11 @@ namespace KingDice
             System.Threading.Thread.Sleep(1000);
         }
 
+        private static void OptStat() //Option qui permet d'afficher les statistique.
+        {
+
+        }
+
         private static void test()
         {
             int i;

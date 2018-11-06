@@ -1,25 +1,22 @@
 ﻿using System;
+/*
 
+
+    ############################
+    #                          #
+    #   Piste d'amélioration   #
+    #                          #
+    ############################
+    
+     
+*/
 public class Menu
 {
-    /*public static string tableauEnTete(string[] titre, string[] value, int largeur, int nbCol)
-	{
-        
-	}*/
     public static void AffMenu(string[] contenu, string titre = "", int taille = 0) //en couleur de base
     {
         //Récupération de la taille maximale
         if(taille == 0 || taille < TailleStringMax(contenu))
             taille = TailleStringMax(contenu);
-        //Console.Clear(); //Reset de l'ecran
-
-        //Liste de test
-        /*
-        Console.WriteLine("taille == {0}", taille);
-        Console.WriteLine("Contenu.Length == ", contenu.Length);
-        for(int test = 0; contenu i)
-        */
-
 
         
         //Affichage du Titre du tableau
@@ -56,6 +53,10 @@ public class Menu
 
     }
 
+    public static void TableauDoubleEntree()  //Création d'un objet Tableau en-tête
+    {
+
+    }
     //Fonction d'aide à l'affichage
     public static void RepChar(char c, int taille) //Répète un caractère
     {
@@ -153,4 +154,23 @@ public class Menu
     }
 
 
+}
+
+public class TableauDouble //A finir faire le constructeur de façon a avoir les tableau de tout type voir la docu
+{
+    //Champ
+
+    //Constructeur
+    public void TableauDouble(int[,] donnée)
+    {
+
+    }
+
+    public TableauDouble()
+    {
+
+    }
+    //Propriété
+
+    //Méthode
 }
