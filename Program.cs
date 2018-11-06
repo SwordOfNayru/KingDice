@@ -43,9 +43,9 @@ namespace KingDice
                 Console.Clear();
                 Animation.titre(CouleurTitre);
                 Console.CursorVisible = true;
-                choix = Menu.MenuChoix(menu,"",Animation.TailleTitre); //Affichage du menu
+                choix = Menu.MenuChoix(menu, "", Animation.TailleTitre); //Affichage du menu
                 Console.CursorVisible = false;
-                switch(choix)
+                switch (choix)
                 {
                     default: break;
                     case 1: nbparti++; OptJeu1(); break;
@@ -109,6 +109,8 @@ namespace KingDice
             //Variable
             List<int> suite;
             bool fin;
+            double addsuite; esp;
+            const double esppart = 3.33333; //
             ConsoleKey saisi;
             //Fonction
             joueurs.QuiCommence();
@@ -120,7 +122,7 @@ namespace KingDice
                 {
                     Debut123();
                     suite.Add(joueurs.Actuel.DernierDe);
-                    if (suite.Last() == 1)
+                    if (suite.Last() == 1) //PARTI DU JEU SI LE TIRAGE == 1
                     {
                         fin = false;
                         Console.WriteLine("{0} a {1} points\nDommage la suite est perdu...", joueurs.Actuel.Nom, joueurs.Actuel.Point);
@@ -128,12 +130,18 @@ namespace KingDice
                         else
                             if (ContinueOuQuitter() == ConsoleKey.Escape) goto end;
                     }
-                    else
+                    else //PARTI DU JEU OU LE JOUEUR CHOISI
                     {
                         Animation.LigneDeDes(suite);
-                        if(joueurs.Actuel.Bot) //A Finir
+                        if (joueurs.Actuel.Bot) //Le bot regarde l'espérence de gain et si l'espérence est négatif il arrète la suite.
                         {
-
+                            addsuite = (double)suite.Sum();
+                            esp = -addsuite * 0.16666 + esppart;
+                            if (esp < 0)
+                            {
+                                fin = true;
+                                joueur.Actuel.Point = suite.Sum();
+                            }
                         }
                         else
                         {
@@ -143,6 +151,11 @@ namespace KingDice
                                 saisi = Console.ReadKey(true).Key;
                                 if (saisi == ConsoleKey.Escape) goto end;
                             } while (saisi != ConsoleKey.O && saisi != ConsoleKey.N);
+                            if(saisi == ConsoleKey.N)
+                            {
+                                fin = true;
+                                joueurs.Actuel.Point = suite.Sum();
+                            }
                         }
                     }
                 } while (fin);
