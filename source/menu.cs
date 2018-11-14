@@ -67,9 +67,9 @@ public class Menu
         RepChar(c, taillemilieu);
         Console.WriteLine(fin);
     }
-    public static string Centre(string chaine, int taille, char espaceur = ' ') //Permet de centré dans un longueur de chaine donnée avec un espaceur
+    public static string Centre(string chaine, int taille, char espaceur = ' ' ) //Permet de centré dans un longueur de chaine donnée avec un espaceur
     {
-        if (chaine.Length < taille)
+        if (chaine.Length > taille)
         {
             return chaine;
         }

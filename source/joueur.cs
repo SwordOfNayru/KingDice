@@ -42,6 +42,7 @@ public class TableJoueur
         int palier = 0;
         int chancePalier = Table[0].ChanceStart;
         int jet = rng.Next(totalChance + 1);
+        this.Reset();
         while(jet > chancePalier)
         {
             palier++;
@@ -97,9 +98,21 @@ public class TableJoueur
     {
         for(int i = 0; i < NbJoueur; i++)
         {
-            if (Table[i].Point >= pts) return Table[i];
+            if (Table[i].Point >= pts)
+            {
+                Table[i].Nbvic++;
+                return Table[i];
+            }
         }
         return Table[0];
+    }
+
+    public void Reset()
+    {
+        foreach(Joueur joueur in Table)
+        {
+            joueur.Point = 0;
+        }
     }
 }
 public class Joueur
@@ -136,7 +149,12 @@ public class Joueur
             if (Bot) return "[bot] " + _nom;
             else return _nom;
         }
-        set { _nom = value; }
+        set
+        {
+            _nom = value;
+            if(_nom.Length > 25)
+                _nom = _nom.Remove(0, 25);
+        }
     }
     public bool Bot { get; set; }
     public bool Acommencer { get; set; }
@@ -156,6 +174,7 @@ public class Joueur
     {
         int jet = _alea.Next(1, 7);
         DernierDe = jet;
+        StatD[jet - 1]++;       
         return jet;
     }
 
