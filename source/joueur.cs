@@ -85,6 +85,11 @@ public class TableJoueur
         }
     }
 
+    /// <summary>
+    /// Renvoie vrai si un joueur dépasse la limite de point
+    /// </summary>
+    /// <param name="limite"></param>
+    /// <returns></returns>
     public bool TesteLimite(int limite)
     {
         for(int i = 0; i < NbJoueur; i++)
@@ -94,6 +99,7 @@ public class TableJoueur
         return false;
     }
 
+    ///Retourne le joueurs qui a gagner en fonction de la limite de points
     public Joueur QuiAGagner(int pts)
     {
         for(int i = 0; i < NbJoueur; i++)

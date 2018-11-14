@@ -18,7 +18,7 @@ namespace KingDice
         private static int nbparti = 0;
         private static string[] menu = new string[] { "Jeu de Base", "Jeu ajouté", "Statistique", "Options", "Sorti" };
         private static string[] sousMenuJeuBase = new string[] { "Jeu : Jet Simple", "Jeu : Jet avec Relance", "Jeu : Suite Hit or stop ?", "Retour au menu principal" };
-        private static string[] sousMenuJeuAjoute = new string[] { "Jeu : ", "Retour au menu principal" };
+        private static string[] sousMenuJeuAjoute = new string[] { "Jeu : Selection", "Retour au menu principal" };
         private static string[] sousMenuOptiontxt = new string[] { "Choissir nom", "Activer le Bot", "Retour au menu principal" };
         private static int[] curseurPosDJA = new int[2], curseurPosDJB = new int[2]; //variable de l'affichage du dé d'un des deux joueur
         private static int[] curseurOrigine;
@@ -267,7 +267,7 @@ namespace KingDice
         /// <summary>
         /// Fonction de déroulement du jeu 4 comporte la gestion d'un curseur de selection
         /// </summary>
-        private static void OptJeu4()
+        private static void OptJeu4() //n'a pas encore le bot.
         {
             ConsoleKey saisi = ConsoleKey.O;
             int[] posLigneCur;
@@ -335,9 +335,11 @@ namespace KingDice
                 Console.WriteLine("{0} votre nouvelle ligne de dés : \n", joueurs.Actuel.Nom);
                 Animation.LigneDeDes(suite);
                 Console.WriteLine("Vous avez {0} points", joueurs.Actuel.Point);
-                if (ConsoleKey.Escape == ContinueOuQuitter())
+                if (ContinueOuQuitter() == ConsoleKey.Escape)
                     goto end;
-            } while (joueurs.TesteLimite(50));//Fin loop du tour
+                joueurs.TourSuivant();
+            } while (!joueurs.TesteLimite(50));//Fin loop du tour
+            Victoire(joueurs.QuiAGagner(50));
         end:;
         }
 
